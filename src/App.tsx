@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { 
   ChevronDown, 
   ArrowRight, 
@@ -7,9 +7,6 @@ import {
   Sun, 
   Map as MapIcon, 
   Activity,
-  Globe,
-  Lock,
-  ExternalLink,
   Menu,
   X,
   Zap,
