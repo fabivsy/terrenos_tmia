@@ -11,9 +11,12 @@ import {
   Lock,
   ExternalLink,
   Menu,
-  X
+  X,
+  Zap,
+  Wind
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { CALCULATOR_NODES, REGIONAL_NODES } from './constants';
 
 // --- COMPONENTS ---
 
@@ -75,6 +78,82 @@ const FAQItem = ({ question, answer }: { question: string, answer: string }) => 
     </div>
   );
 };
+
+const CalculatorCard = ({ icon: Icon, name, region, desc, url }: { icon: any, name: string, region: string, desc: string, url: string }) => (
+  <motion.div 
+    whileHover={{ y: -5 }}
+    className="glass rounded-3xl p-6 md:p-8 hover:border-indigo-prime/40 transition-all duration-500 group relative overflow-hidden flex flex-col h-full border border-white/5"
+  >
+    <div className="flex items-center gap-4 mb-6">
+      <div className="w-12 h-12 rounded-xl bg-indigo-prime/10 flex items-center justify-center text-indigo-prime group-hover:bg-indigo-prime group-hover:text-white transition-all">
+        <Icon size={20} />
+      </div>
+      <div>
+        <h3 className="text-white font-black uppercase italic tracking-tighter text-lg">
+          {name}
+        </h3>
+        <p className="text-[10px] text-indigo-prime font-black uppercase tracking-widest">
+          {region}
+        </p>
+      </div>
+    </div>
+    <p className="text-slate-400 text-sm leading-relaxed mb-8 flex-grow">
+      {desc}
+    </p>
+    <a 
+      href={url}
+      className="inline-flex items-center gap-2 text-white font-black uppercase text-[10px] tracking-[0.2em] group-hover:text-indigo-prime transition-colors"
+    >
+      Acceder al Modelo <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+    </a>
+  </motion.div>
+);
+
+const DirectoryCard = ({ name, desc, predicate, status, url }: { name: string, desc: string, predicate: string, status: string, url: string }) => (
+  <motion.div 
+    whileHover={{ y: -5 }}
+    className="bg-white/10 rounded-3xl p-10 border border-white/10 hover:border-indigo-prime/60 hover:shadow-[0_0_20px_rgba(79,70,229,0.3)] transition-all duration-500 flex flex-col h-full group"
+  >
+    <div className="flex justify-between items-start mb-6">
+      <h3 className="text-2xl font-black text-white italic uppercase tracking-tighter">
+        {name}
+      </h3>
+      <div className="flex flex-col items-end gap-2">
+        <div className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[9px] font-black uppercase tracking-widest text-slate-500">
+          STATUS: <span className="text-indigo-prime">{status}</span>
+        </div>
+      </div>
+    </div>
+    
+    <p className="text-slate-200 font-bold text-base leading-relaxed mb-6">
+      {desc}
+    </p>
+    
+    <div className="p-5 bg-black/60 rounded-xl border border-white/10 mb-10">
+      <p className="text-sm text-cyan-400 leading-relaxed font-mono">
+        <span className="text-slate-100 font-black">LOGIC_CHUNK:</span> {predicate}
+      </p>
+    </div>
+
+    <div className="mt-auto pt-6 border-t border-white/10">
+      <div className="flex flex-col gap-6">
+        <div className="flex items-center gap-2">
+          <div className="px-3 py-1.5 bg-indigo-prime/20 border-2 border-indigo-prime/50 rounded-md text-[10px] font-black text-indigo-200 uppercase tracking-[0.2em]">
+            [ FACTIBILIDAD GEOESPACIAL: {status} ]
+          </div>
+        </div>
+        <div className="flex flex-col gap-3">
+          <a href={url} className="w-full bg-indigo-prime text-white text-center py-4 rounded-xl text-[11px] font-black uppercase tracking-widest hover:bg-indigo-400 hover:shadow-[0_0_25px_rgba(79,70,229,0.8)] transition-all">
+            [ SOLICITAR ESTUDIO DE RIESGO ]
+          </a>
+          <p className="text-[10px] text-slate-400 text-center leading-relaxed mt-1 font-medium">
+            Tierra validada para las estructuras geodésicas de alto rendimiento listadas en <a href="https://listadomos.com" className="text-indigo-400 hover:text-indigo-300 transition-colors">ListaDomos.com</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </motion.div>
+);
 
 // --- MAIN CONTENT ---
 
@@ -170,14 +249,19 @@ export default function App() {
             transition={{ delay: 0.3 }}
             className="flex flex-col md:flex-row items-center justify-center gap-6"
           >
-            <button className="w-full md:w-auto bg-indigo-prime hover:bg-indigo-700 text-white px-10 py-5 rounded-2xl font-black uppercase text-sm tracking-widest transition-all shadow-2xl hover:scale-105 active:scale-95">
-              Explorar Mapa de Terrenos
-            </button>
             <a 
-              href="https://geo.tumapaia.com"
-              className="w-full md:w-auto border-2 border-white/10 hover:border-indigo-prime/50 text-white px-10 py-5 rounded-2xl font-black uppercase text-sm tracking-widest transition-all hover:bg-white/5"
+              href="#faq-propietarios"
+              className="w-full md:w-auto bg-indigo-prime hover:bg-indigo-700 text-white px-8 py-5 rounded-2xl font-black uppercase text-sm tracking-widest transition-all shadow-2xl hover:scale-105 active:scale-95 text-center"
             >
-              Analizar Mi Terreno
+              <span className="block text-[10px] text-indigo-200 mb-1 tracking-[0.2em]">SOY PROPIETARIO / INMOBILIARIA</span>
+              Valorización del Activo
+            </a>
+            <a 
+              href="#faq-inversores"
+              className="w-full md:w-auto border-2 border-white/10 hover:border-indigo-prime/50 text-white px-8 py-5 rounded-2xl font-black uppercase text-sm tracking-widest transition-all hover:bg-white/5 text-center"
+            >
+              <span className="block text-[10px] text-slate-400 mb-1 tracking-[0.2em]">BUSCO TIERRA PARA INVERTIR</span>
+              Seguridad Técnica
             </a>
           </motion.div>
         </div>
@@ -205,6 +289,63 @@ export default function App() {
               h3Title="ASOLEAMIENTO & ORIENTACIÓN"
               desc="Optimización de la implantación del domo según el recorrido solar para maximizar la eficiencia térmica pasiva."
             />
+          </div>
+        </div>
+      </section>
+
+      {/* Technical Feasibility Calculators */}
+      <section className="py-24 bg-[#020617] relative">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mb-16">
+            <h2 className="text-4xl md:text-5xl font-black text-white italic uppercase tracking-tighter leading-none mb-6">
+              CÁLCULO DE <span className="text-indigo-prime">FACTIBILIDAD TÉCNICA</span>
+            </h2>
+            <p className="text-lg text-slate-400 font-medium leading-relaxed">
+              "Acceda a nuestros modelos de validación entrenados específicamente para analizar la viabilidad técnica, legal y financiera en las zonas de mayor crecimiento."
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {CALCULATOR_NODES.map((node) => (
+              <CalculatorCard 
+                key={node.id}
+                icon={node.icon === 'zap' ? Zap : Wind}
+                name={node.name}
+                region={node.region}
+                desc={node.description}
+                url={node.url}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Regional Nodes Directory */}
+      <section className="py-24 bg-[#050505] relative border-y border-white/5">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <div className="inline-block px-4 py-1 bg-white/5 border border-white/10 rounded-full text-slate-500 font-black uppercase text-[10px] tracking-[0.4em] mb-6">
+              Entity Mapping v2026
+            </div>
+            <h2 className="text-4xl md:text-6xl font-black text-white italic uppercase tracking-tighter leading-none mb-8">
+              RED DE NODOS <span className="text-indigo-prime">GEOESPACIALES</span>
+            </h2>
+            <p className="max-w-2xl mx-auto text-slate-400 font-medium leading-relaxed">
+              Expansión estratégica de validación en los mercados primarios de Hispanoamérica. Cada nodo representa un punto de autoridad técnica y seguridad jurídica.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {REGIONAL_NODES.map((node) => (
+              <DirectoryCard 
+                key={node.id}
+                name={node.name}
+                desc={node.description}
+                predicate={node.technicalPredicate}
+                status={node.status}
+                url={node.url}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -279,19 +420,48 @@ export default function App() {
               </h2>
             </div>
 
-            <div className="space-y-2">
-              <FAQItem 
-                question="¿Cómo reduce la validación técnica el riesgo de inversión?"
-                answer="Mediante el análisis multiespectral y topográfico de alta resolución, identificamos patologías latentes del suelo que pasan desapercibidas en tasaciones inmobiliarias tradicionales. Esto permite una cimentación optimizada y previene sobrecostos estructurales de hasta un 40%."
-              />
-              <FAQItem 
-                question="¿Por qué el GEO es vital para que su terreno sea encontrado por inversores de alta intención?"
-                answer="Los inversores de la nueva economía no buscan metros cuadrados, buscan datos. Al validar su terreno geoespacialmente, lo inyectamos en un grafo de conocimiento (Knowledge Graph) que los modelos de IA y fondos de inversión utilizan para filtrar oportunidades con viabilidad técnica garantizada."
-              />
-              <FAQItem 
-                question="¿Qué es la Soberanía Semántica en el mercado de tierras sustentables?"
-                answer="Es el derecho del propietario a que su tierra sea comprendida por su valor técnico intrínseco (bioclimatismo, hidrología, geodésica) y no por etiquetas comerciales vacías. Es pasar de 'Venta de lote' a 'Activo Geo-Validado para Glamping de Alta Gama'."
-              />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-left">
+              <div id="faq-propietarios" className="space-y-6">
+                <div className="border-b border-white/10 pb-4 mb-6">
+                  <h3 className="text-xl font-black text-white italic uppercase tracking-tighter">
+                    CATEGORÍA A: PARA PROPIETARIOS Y AGENTES
+                  </h3>
+                  <p className="text-[10px] font-black text-indigo-prime uppercase tracking-widest mt-1">
+                    (Captar Valor)
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <FAQItem 
+                    question="¿Por qué el GEO es vital para que mi terreno sea encontrado?"
+                    answer="Soberanía Semántica: Inyectamos su terreno en el Grafo de Conocimiento de la IA, permitiendo que inversores de alta intención lo localicen mediante filtros técnicos (bioclimatismo, hidrología) y no solo por precio."
+                  />
+                  <FAQItem 
+                    question="¿Cómo aumenta la validación el valor de venta?"
+                    answer="Al eliminar la fricción técnica. Un terreno pre-aprobado para factibilidad Off-Grid o Glamping reduce el ciclo de ventas a inversores en un 40%."
+                  />
+                </div>
+              </div>
+
+              <div id="faq-inversores" className="space-y-6">
+                <div className="border-b border-white/10 pb-4 mb-6">
+                  <h3 className="text-xl font-black text-white italic uppercase tracking-tighter">
+                    CATEGORÍA B: PARA INVERSORES Y DESARROLLADORES
+                  </h3>
+                  <p className="text-[10px] font-black text-indigo-prime uppercase tracking-widest mt-1">
+                    (Mitigar Riesgo)
+                  </p>
+                </div>
+                <div className="space-y-2">
+                  <FAQItem 
+                    question="¿Por qué evitar búsquedas estándar en portales inmobiliarios?"
+                    answer="Portales carecen de metadata geoespacial. Las búsquedas GEO analizan la capa técnica del suelo (escorrentía, soleamiento, vientos) antes de comprometer capital, asegurando viabilidad constructiva."
+                  />
+                  <FAQItem 
+                    question="¿Qué incluye un protocolo de pre-inversión?"
+                    answer="Un análisis de 27 variables inmutables que cruza datos satelitales (InSAR) y bases hidrológicas para validar que el terreno soporta la arquitectura geodésica sin fallas estructurales a largo plazo."
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
