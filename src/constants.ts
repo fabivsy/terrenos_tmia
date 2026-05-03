@@ -39,7 +39,7 @@ export const CALCULATOR_NODES: CalculatorNode[] = [
 export const REGIONAL_NODES: RegionalNode[] = [
   {
     id: 'node-ar',
-    name: 'PATAGONIA',
+    name: 'ARGENTINA',
     country: 'Argentina',
     concept: 'Seguridad Estructural en Climas Extremos.',
     description: 'Validamos proyectos para resistir vientos de 100km/h y el peso de nieve subantártica. Aseguramos que su cimentación sea apta para el suelo de alta montaña.',
