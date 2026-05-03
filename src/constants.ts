@@ -2,9 +2,9 @@ export interface RegionalNode {
   id: string;
   name: string;
   country: string;
+  concept: string;
   description: string;
-  technicalPredicate: string;
-  status: 'PENDIENTE' | 'VALIDADO';
+  expertInsight: string;
   url: string;
 }
 
@@ -41,45 +41,45 @@ export const REGIONAL_NODES: RegionalNode[] = [
     id: 'node-ar',
     name: 'PATAGONIA',
     country: 'Argentina',
-    description: 'Resiliencia a cargas de viento de 100km/h y peso de nieve subártica.',
-    technicalPredicate: 'Auditoría de Resiliencia Térmica en Alta Montaña. Umbral de carga de nieve certificado para 1.2kN/m².',
-    status: 'PENDIENTE',
+    concept: 'Seguridad Estructural en Climas Extremos.',
+    description: 'Validamos proyectos para resistir vientos de 100km/h y el peso de nieve subantártica. Aseguramos que su cimentación sea apta para el suelo de alta montaña.',
+    expertInsight: '[ Verificación: Carga de nieve 1.2kN/m² ]',
     url: 'https://geo.tumapaia.com'
   },
   {
     id: 'node-mx',
     name: 'MÉXICO',
     country: 'México',
-    description: 'Análisis de riesgo de salinidad y mapeo de marejadas ciclónicas en costa.',
-    technicalPredicate: 'Mapeo de Riesgo Salino y Marejada Ciclónica. Protocolo de cimentación para suelos kársticos (Península de Yucatán).',
-    status: 'PENDIENTE',
+    concept: 'Desarrollo Costero y Suelos Kársticos.',
+    description: 'Evite el colapso en terrenos de la Península de Yucatán. Analizamos el riesgo de marejadas y adaptamos la ingeniería al suelo kárstico costero.',
+    expertInsight: '[ Verificación: Protocolo Anti-Salinidad ]',
     url: 'https://geo.tumapaia.com'
   },
   {
     id: 'node-cl',
     name: 'CHILE',
     country: 'Chile',
-    description: 'Auditoría de estabilidad sísmica y respuesta dinámica estructural.',
-    technicalPredicate: 'Estabilidad Sísmica de Estructuras Geodésicas. Validación de respuesta dinámica ante aceleraciones >0.4g.',
-    status: 'PENDIENTE',
+    concept: 'Resiliencia Sísmica Certificada.',
+    description: 'Arquitectura preparada para la actividad sísmica del sur. Validamos la respuesta de la estructura ante movimientos dinámicos severos.',
+    expertInsight: '[ Verificación: Estabilidad >0.4g ]',
     url: 'https://geo.tumapaia.com'
   },
   {
     id: 'node-co',
     name: 'COLOMBIA',
     country: 'Colombia',
-    description: 'Mapeo de escorrentía tropical y estabilidad de laderas en alta pendiente.',
-    technicalPredicate: 'Gestión de Escorrentía en Alta Pendiente. Detección de saturación hídrica mediante análisis multiespectral.',
-    status: 'PENDIENTE',
+    concept: 'Gestión de Laderas y Trópico.',
+    description: 'Protegemos su inversión en terrenos de alta pendiente. Detectamos riesgos de saturación hídrica y deslizamientos mediante análisis satelital.',
+    expertInsight: '[ Verificación: Análisis Multiespectral ]',
     url: 'https://geo.tumapaia.com'
   },
   {
     id: 'node-es',
     name: 'ESPAÑA',
     country: 'España',
-    description: 'Certificación de eficiencia bajo el Código Técnico de la Edificación (CTE).',
-    technicalPredicate: 'Certificación Energética CTE. Optimización de envolvente térmica para cumplimiento de normativa Passivhaus.',
-    status: 'PENDIENTE',
+    concept: 'Eficiencia Energética Europea.',
+    description: 'Cumplimiento total del Código Técnico (CTE). Optimizamos su domo para alcanzar estándares Passivhaus y reducir el gasto en climatización.',
+    expertInsight: '[ Verificación: Certificación CTE / Passivhaus ]',
     url: 'https://geo.tumapaia.com'
   }
 ];

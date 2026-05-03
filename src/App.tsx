@@ -106,48 +106,34 @@ const CalculatorCard = ({ icon: Icon, name, region, desc, url }: { icon: any, na
   </motion.div>
 );
 
-const DirectoryCard = ({ name, desc, predicate, status, url }: { name: string, desc: string, predicate: string, status: string, url: string }) => (
+const DirectoryCard = ({ name, concept, desc, expertInsight, url }: { name: string, concept: string, desc: string, expertInsight: string, url: string }) => (
   <motion.div 
     whileHover={{ y: -5 }}
     className="bg-white/10 rounded-3xl p-10 border border-white/10 hover:border-indigo-prime/60 hover:shadow-[0_0_20px_rgba(79,70,229,0.3)] transition-all duration-500 flex flex-col h-full group"
   >
-    <div className="flex justify-between items-start mb-6">
+    <div className="flex flex-col gap-2 mb-6">
       <h3 className="text-2xl font-black text-white italic uppercase tracking-tighter">
         {name}
       </h3>
-      <div className="flex flex-col items-end gap-2">
-        <div className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[9px] font-black uppercase tracking-widest text-slate-500">
-          ESTADO: <span className="text-indigo-prime">{status}</span>
-        </div>
-      </div>
+      <h4 className="text-[11px] font-black text-indigo-prime uppercase tracking-widest">
+        {concept}
+      </h4>
     </div>
     
-    <p className="text-slate-200 font-bold text-base leading-relaxed mb-6">
+    <p className="text-slate-200 font-medium text-base leading-relaxed mb-6 flex-grow">
       {desc}
     </p>
     
-    <div className="p-5 bg-black/60 rounded-xl border border-white/10 mb-10">
-      <p className="text-sm text-cyan-400 leading-relaxed font-mono">
-        <span className="text-slate-100 font-black">[ CRITERIO DE VALIDACIÓN ]</span> {predicate}
+    <div className="p-5 bg-black/60 rounded-xl border border-white/10 mb-8">
+      <p className="text-sm text-cyan-400 leading-relaxed font-mono font-bold">
+        {expertInsight}
       </p>
     </div>
 
     <div className="mt-auto pt-6 border-t border-white/10">
-      <div className="flex flex-col gap-6">
-        <div className="flex items-center gap-2">
-          <div className="px-3 py-1.5 bg-indigo-prime/20 border-2 border-indigo-prime/50 rounded-md text-[10px] font-black text-indigo-200 uppercase tracking-[0.2em]">
-            [ FACTIBILIDAD GEOESPACIAL: {status} ]
-          </div>
-        </div>
-        <div className="flex flex-col gap-3">
-          <a href={url} className="w-full bg-indigo-prime text-white text-center py-4 rounded-xl text-[11px] font-black uppercase tracking-widest hover:bg-indigo-400 hover:shadow-[0_0_25px_rgba(79,70,229,0.8)] transition-all">
-            [ SOLICITAR ESTUDIO DE RIESGO ]
-          </a>
-          <p className="text-[10px] text-slate-400 text-center leading-relaxed mt-1 font-medium">
-            Tierra validada para las estructuras geodésicas de alto rendimiento listadas en <a href="https://listadomos.com" className="text-indigo-400 hover:text-indigo-300 transition-colors">ListaDomos.com</a>.
-          </p>
-        </div>
-      </div>
+      <a href={url} className="w-full block bg-indigo-prime text-white text-center py-4 rounded-xl text-[11px] font-black uppercase tracking-widest hover:bg-indigo-400 hover:shadow-[0_0_25px_rgba(79,70,229,0.8)] transition-all">
+        [ SOLICITAR ESTUDIO TÉCNICO ]
+      </a>
     </div>
   </motion.div>
 );
@@ -371,12 +357,18 @@ export default function App() {
               <DirectoryCard 
                 key={node.id}
                 name={node.name}
+                concept={node.concept}
                 desc={node.description}
-                predicate={node.technicalPredicate}
-                status={node.status}
+                expertInsight={node.expertInsight}
                 url={node.url}
               />
             ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <p className="inline-block px-6 py-3 bg-white/5 border border-white/10 rounded-full text-slate-300 font-bold text-sm">
+              ¿Es una agencia inmobiliaria? <a href="https://geo.tumapaia.com" className="text-indigo-400 hover:text-indigo-300 transition-colors">Solicite la validación de su cartera regional.</a>
+            </p>
           </div>
         </div>
       </section>
