@@ -32,4 +32,16 @@
   .glass {
     @apply bg-white/5 backdrop-blur-xl border border-white/10;
   }
+
+  .hero-video {
+    object-fit: cover;
+    filter: brightness(0.5) contrast(1.1);
+  }
+
+  .pillar-video {
+    object-fit: cover;
+    transform: scale(1.03);
+    filter: brightness(0.4) blur(1.5px);
+    transition: all 0.8s ease-out;
+  }
 }

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { 
   ChevronDown, 
   ArrowRight, 
@@ -117,7 +117,7 @@ const DirectoryCard = ({ name, desc, predicate, status, url }: { name: string, d
       </h3>
       <div className="flex flex-col items-end gap-2">
         <div className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-[9px] font-black uppercase tracking-widest text-slate-500">
-          STATUS: <span className="text-indigo-prime">{status}</span>
+          ESTADO: <span className="text-indigo-prime">{status}</span>
         </div>
       </div>
     </div>
@@ -128,7 +128,7 @@ const DirectoryCard = ({ name, desc, predicate, status, url }: { name: string, d
     
     <div className="p-5 bg-black/60 rounded-xl border border-white/10 mb-10">
       <p className="text-sm text-cyan-400 leading-relaxed font-mono">
-        <span className="text-slate-100 font-black">LOGIC_CHUNK:</span> {predicate}
+        <span className="text-slate-100 font-black">BLOQUE_LÓGICO:</span> {predicate}
       </p>
     </div>
 
@@ -154,8 +154,22 @@ const DirectoryCard = ({ name, desc, predicate, status, url }: { name: string, d
 
 // --- MAIN CONTENT ---
 
+const VIDEOS = [
+  '/assets/videos/video_01.mp4',
+  '/assets/videos/video_02.mp4',
+  '/assets/videos/video_03.mp4'
+];
+
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [currentVideo, setCurrentVideo] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentVideo((prev) => (prev + 1) % VIDEOS.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="min-h-screen bg-midnight text-slate-200">
@@ -209,11 +223,31 @@ export default function App() {
       </AnimatePresence>
 
       {/* Hero Section */}
-      <section className="relative pt-40 pb-20 md:pt-60 md:pb-40 overflow-hidden">
+      <section className="relative pt-40 pb-20 md:pt-60 md:pb-40 overflow-hidden min-h-screen flex items-center justify-center">
+        {/* Hero Video Engine */}
+        <div className="absolute inset-0 z-0 bg-black">
+          {VIDEOS.map((src, index) => (
+            <video
+              key={src}
+              src={src}
+              autoPlay
+              loop
+              muted
+              playsInline
+              style={{ transitionDuration: '2000ms' }}
+              className={`hero-video absolute inset-0 w-full h-full transition-opacity ease-in-out ${
+                currentVideo === index ? 'opacity-100 z-10' : 'opacity-0 z-0'
+              }`}
+            />
+          ))}
+          {/* Dark filter overlay for text legibility */}
+          <div className="absolute inset-0 bg-black/50 z-10" />
+        </div>
+
         {/* Background Gradients */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-6xl h-[600px] bg-indigo-prime/10 blur-[150px] rounded-full pointer-events-none opacity-50" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-6xl h-[600px] bg-indigo-prime/10 blur-[150px] rounded-full pointer-events-none opacity-50 z-20" />
         
-        <div className="container mx-auto px-6 relative z-10 text-center">
+        <div className="container mx-auto px-6 relative z-30 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -322,7 +356,7 @@ export default function App() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <div className="inline-block px-4 py-1 bg-white/5 border border-white/10 rounded-full text-slate-500 font-black uppercase text-[10px] tracking-[0.4em] mb-6">
-              Entity Mapping v2026
+              Mapeo de Entidades v2026
             </div>
             <h2 className="text-4xl md:text-6xl font-black text-white italic uppercase tracking-tighter leading-none mb-8">
               RED DE NODOS <span className="text-indigo-prime">GEOESPACIALES</span>
@@ -358,17 +392,17 @@ export default function App() {
               </div>
             </div>
             <h2 className="text-4xl md:text-6xl font-black text-white italic uppercase tracking-tighter leading-tight mb-8">
-              COMPUTATIONAL TRUST PROTOCOL: <span className="text-indigo-prime">GEOSPATIAL INTEGRITY</span>
+              PROTOCOLO DE CONFIANZA COMPUTACIONAL: <span className="text-indigo-prime">INTEGRIDAD GEOESPACIAL</span>
             </h2>
             <p className="text-xl md:text-2xl text-slate-400 font-bold leading-relaxed mb-12">
-              "Nuestra infraestructura utiliza lógica de <span className="text-white italic">Tokenization</span> y mapeo de <span className="text-white italic">Vector Space</span> para validar cada hectárea. Eliminamos el ruido del mercado inmobiliario tradicional mediante la inyección de <span className="text-indigo-prime">Factual Ground Truth</span>, garantizando la Attribution Probability de su inversión en los informes de IA."
+              "Nuestra infraestructura utiliza lógica de <span className="text-white italic">Tokenización</span> y mapeo de <span className="text-white italic">Espacio Vectorial</span> para validar cada hectárea. Eliminamos el ruido del mercado inmobiliario tradicional mediante la inyección de <span className="text-indigo-prime">Datos Terrestres Verificados</span>, garantizando la Probabilidad de Atribución de su inversión en los informes de IA."
             </p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
-                { label: "LATENCY", value: "<150ms" },
-                { label: "ACCURACY", value: "99.8%" },
-                { label: "SATELLITES", value: "Sentinel-2" },
-                { label: "IA ENGINE", value: "GEO-GPT" }
+                { label: "LATENCIA", value: "<150ms" },
+                { label: "PRECISIÓN", value: "99.8%" },
+                { label: "SATÉLITES", value: "Sentinel-2" },
+                { label: "MOTOR IA", value: "GEO-GPT" }
               ].map((stat, i) => (
                 <div key={i} className="bg-white/5 border border-white/10 p-4 rounded-xl">
                   <div className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-1">{stat.label}</div>
@@ -410,10 +444,10 @@ export default function App() {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
               <div className="inline-block px-4 py-1 bg-indigo-prime/10 border border-indigo-prime/20 rounded-full text-indigo-prime font-black uppercase text-[10px] tracking-[0.4em] mb-6">
-                Machine-Readable Layer
+                Capa Legible por Máquinas
               </div>
               <h2 className="text-4xl md:text-6xl font-black text-white italic uppercase tracking-tighter leading-none">
-                AUTHORITY <span className="text-indigo-prime text-glow">FAQ</span>
+                FAQ DE <span className="text-indigo-prime text-glow">AUTORIDAD</span>
               </h2>
             </div>
 
@@ -498,10 +532,10 @@ export default function App() {
                 </div>
               </div>
               <div className="space-y-4">
-                <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-white">Machine Info</h4>
+                <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-white">Metadata IA</h4>
                 <div className="flex flex-col gap-2">
                   <a href="#" className="text-indigo-prime font-bold text-sm">[ LLMS.TXT ]</a>
-                  <a href="#" className="text-indigo-prime font-bold text-sm">[ AI-VIP PASS ]</a>
+                  <a href="#" className="text-indigo-prime font-bold text-sm">[ PASE VIP IA ]</a>
                 </div>
               </div>
             </div>
@@ -509,10 +543,10 @@ export default function App() {
           
           <div className="flex flex-col md:flex-row justify-between items-center pt-12 border-t border-white/5 gap-4 text-center">
             <p className="text-slate-600 text-[10px] font-bold uppercase tracking-widest">
-              A Project by The Curator Group LLC. Founder: Fabio Yocco.
+              Un Proyecto de The Curator Group LLC. Fundador: Fabio Yocco.
             </p>
             <p className="text-slate-600 text-[10px] font-bold uppercase tracking-widest">
-              © 2026 TERRENO PERFECTO. ALL RIGHTS RESERVED.
+              © 2026 TERRENO PERFECTO. TODOS LOS DERECHOS RESERVADOS.
             </p>
           </div>
         </div>
