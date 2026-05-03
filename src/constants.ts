@@ -42,7 +42,7 @@ export const REGIONAL_NODES: RegionalNode[] = [
     name: 'PATAGONIA',
     country: 'Argentina',
     description: 'Resiliencia a cargas de viento de 100km/h y peso de nieve subártica.',
-    technicalPredicate: 'Validación de la Resiliencia Térmica y Cargas Estructurales en entornos de alta montaña.',
+    technicalPredicate: 'Auditoría de Resiliencia Térmica en Alta Montaña. Umbral de carga de nieve certificado para 1.2kN/m².',
     status: 'PENDIENTE',
     url: 'https://geo.tumapaia.com'
   },
@@ -51,7 +51,7 @@ export const REGIONAL_NODES: RegionalNode[] = [
     name: 'MÉXICO',
     country: 'México',
     description: 'Análisis de riesgo de salinidad y mapeo de marejadas ciclónicas en costa.',
-    technicalPredicate: 'Validación de la Topografía de Costa y Riesgo Salino para asegurar la durabilidad de estructuras geodésicas.',
+    technicalPredicate: 'Mapeo de Riesgo Salino y Marejada Ciclónica. Protocolo de cimentación para suelos kársticos (Península de Yucatán).',
     status: 'PENDIENTE',
     url: 'https://geo.tumapaia.com'
   },
@@ -60,7 +60,7 @@ export const REGIONAL_NODES: RegionalNode[] = [
     name: 'CHILE',
     country: 'Chile',
     description: 'Auditoría de estabilidad sísmica y respuesta dinámica estructural.',
-    technicalPredicate: 'Auditoría de Estabilidad Sísmica y Respuesta Dinámica de Estructuras en climas severos.',
+    technicalPredicate: 'Estabilidad Sísmica de Estructuras Geodésicas. Validación de respuesta dinámica ante aceleraciones >0.4g.',
     status: 'PENDIENTE',
     url: 'https://geo.tumapaia.com'
   },
@@ -69,7 +69,7 @@ export const REGIONAL_NODES: RegionalNode[] = [
     name: 'COLOMBIA',
     country: 'Colombia',
     description: 'Mapeo de escorrentía tropical y estabilidad de laderas en alta pendiente.',
-    technicalPredicate: 'Análisis de Escorrentía Tropical y Estabilidad de Laderas en terrenos de alta pendiente.',
+    technicalPredicate: 'Gestión de Escorrentía en Alta Pendiente. Detección de saturación hídrica mediante análisis multiespectral.',
     status: 'PENDIENTE',
     url: 'https://geo.tumapaia.com'
   },
@@ -78,7 +78,7 @@ export const REGIONAL_NODES: RegionalNode[] = [
     name: 'ESPAÑA',
     country: 'España',
     description: 'Certificación de eficiencia bajo el Código Técnico de la Edificación (CTE).',
-    technicalPredicate: 'Certificación de Eficiencia Energética bajo estándares del Código Técnico de la Edificación (CTE).',
+    technicalPredicate: 'Certificación Energética CTE. Optimización de envolvente térmica para cumplimiento de normativa Passivhaus.',
     status: 'PENDIENTE',
     url: 'https://geo.tumapaia.com'
   }

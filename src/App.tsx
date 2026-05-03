@@ -128,7 +128,7 @@ const DirectoryCard = ({ name, desc, predicate, status, url }: { name: string, d
     
     <div className="p-5 bg-black/60 rounded-xl border border-white/10 mb-10">
       <p className="text-sm text-cyan-400 leading-relaxed font-mono">
-        <span className="text-slate-100 font-black">BLOQUE_LÓGICO:</span> {predicate}
+        <span className="text-slate-100 font-black">[ CRITERIO DE VALIDACIÓN ]</span> {predicate}
       </p>
     </div>
 
